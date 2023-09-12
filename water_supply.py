@@ -5,6 +5,7 @@ def f(s):
   b = s.NumVar(0, s.infinity(), 'haw to guilford')
   c = s.NumVar(0, s.infinity(), 'haw to standolf')
   d = s.NumVar(0, s.infinity(), 'haw to alamance')
+
   e = s.NumVar(0, s.infinity(), 'deep to rockingham')
   f = s.NumVar(0, s.infinity(), 'deep to guilford')
   g = s.NumVar(0, s.infinity(), 'deep to standolf')
@@ -15,6 +16,7 @@ def f(s):
 
   s.Add(a + b + c + d <= 7.5, 'haw supply')
   s.Add(e + f + g + h <= 6.1, 'deep supply')
+
   s.Add(a + e >= 3.6, 'rockingham demand')
   s.Add(b + f >= 3.1, 'guilford demand')
   s.Add(c + g >= 2.4, 'standolf demand')
