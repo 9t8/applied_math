@@ -11,11 +11,12 @@ def analyze(f):
   if status != s.OPTIMAL:
     print('No optimal solution!')
 
-  print(f'Objective value: {s.Objective().Value()}')
+  o = s.Objective()
+  print(f'Objective value: {o.Value()}')
 
-  print(f'{"Value":12}  {"Reduced cost":12}  Variable name')
+  print(f'{"Value":12}  {"Reduced cost":12}  {"Obj coef":12}  Variable name')
   for var in s.variables():
-    print(f'{var.solution_value():12.6}  {var.reduced_cost():12.6}  {var}')
+    print(f'{var.solution_value():12.6}  {var.reduced_cost():12.6}  {o.GetCoefficient(var):12}  {var}')
 
   print(f'{"Value":12}  {"Shadow price":12}  {"Upper bound":12}  Constraint name')
   for cons, val in zip(s.constraints(), s.ComputeConstraintActivities()):
