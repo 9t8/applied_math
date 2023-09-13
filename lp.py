@@ -16,7 +16,7 @@ def analyze(f):
 
   print(f'\n{"Value":12}  {"Reduced cost":12}  {"Obj coef":12}  Variable name')
   for var in s.variables():
-    print(f'{var.solution_value():12.6}  {var.reduced_cost():12.6}  {o.GetCoefficient(var):12}  {var}')
+    print(f'{var.solution_value():12.6}  {var.reduced_cost():12.6}  {o.GetCoefficient(var):12.6}  {var}')
 
   print(f'\n{"Value":12}  {"Shadow price":12}  {"Lower bound":12}  {"Upper bound":12}  Constraint name')
   for cons, val in zip(s.constraints(), s.ComputeConstraintActivities()):
