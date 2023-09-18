@@ -1,14 +1,14 @@
 import lp
 
 def f(s):
-  ec = [3.620, .532, 1.190, .956, .931, .131] # energy content (Cal/g)
+  a = s.NumVar(0, s.infinity(), 'maize flour (g)')
+  b = s.NumVar(0, s.infinity(), 'tangerines (g)')
+  c = s.NumVar(0, s.infinity(), 'pigeon peas (g)')
+  d = s.NumVar(0, s.infinity(), 'matemba (g)')
+  e = s.NumVar(0, s.infinity(), 'potatoes (g)')
+  f = s.NumVar(0, s.infinity(), 'Chinese cabbage (g)')
 
-  a = s.NumVar(1000/ec[0], 1200/ec[0], 'maize flour (g)')
-  b = s.NumVar(50/ec[1], 100/ec[1], 'tangerines (g)')
-  c = s.NumVar(100/ec[2], 250/ec[2], 'pigeon peas (g)')
-  d = s.NumVar(100/ec[3], 300/ec[3], 'matemba (g)')
-  e = s.NumVar(80/ec[4], 160/ec[4], 'potatoes (g)')
-  f = s.NumVar(15/ec[5], 30/ec[5], 'Chinese cabbage (g)')
+  ec = [3.620, .532, 1.190, .956, .931, .131] # energy content (Cal/g)
 
   s.Minimize(ec[0]*a + ec[1]*b + ec[2]*c + ec[3]*d + ec[4]*e + ec[5]*f)
 
@@ -28,5 +28,18 @@ def f(s):
 
   for nd in nutritional_data:
     s.Add(nd[0]*a + nd[1]*b + nd[2]*c + nd[3]*d + nd[4]*e + nd[5]*f >= nd[7], nd[6])
+
+  s.Add(1000 <= ec[0]*a, 'min maize flour (Cal)')
+  s.Add(50 <= ec[1]*b, 'min tangerines (Cal)')
+  s.Add(100 <= ec[2]*c, 'min pigeon peas (Cal)')
+  s.Add(100 <= ec[3]*d, 'min matemba (Cal)')
+  s.Add(80 <= ec[4]*e, 'min potatoes (Cal)')
+  s.Add(15 <= ec[5]*f, 'min Chinese cabbage (Cal)')
+  s.Add(ec[0]*a <= 1200, 'max maize flour (Cal)')
+  s.Add(ec[1]*b <= 100, 'max tangerines (Cal)')
+  s.Add(ec[2]*c <= 250, 'max pigeon peas (Cal)')
+  s.Add(ec[3]*d <= 300, 'max matemba (Cal)')
+  s.Add(ec[4]*e <= 160, 'max potatoes (Cal)')
+  s.Add(ec[5]*f <= 30, 'max Chinese cabbage (Cal)')
 
 lp.analyze(f)
