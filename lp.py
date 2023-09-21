@@ -18,7 +18,7 @@ def analyze(f):
 
   print(f'\n{"Value":12}  {"Reduced cost":12}  {"Obj coef":12}  Variable name')
   for var in s.variables():
-    print(f'{var.solution_value():12.6}  {var.reduced_cost():12.6}  {o.GetCoefficient(var):12.6}  {var}')
+    print(f'{var.solution_value():12.9}  {var.reduced_cost():12.9}  {o.GetCoefficient(var):12.9}  {var}')
 
   print(f'\n{"Value":12}  {"Shadow price":12}  {"Bound":12}  Constraint name')
   for cons, val in zip(s.constraints(), s.ComputeConstraintActivities()):
@@ -27,4 +27,4 @@ def analyze(f):
     else:
       bound = cons.ub() if cons.ub() != math.inf else 'NO BOUNDS'
 
-    print(f'{val:12.6}  {cons.dual_value():12.6}  {bound:12}  {cons.name()}')
+    print(f'{val:12.9}  {cons.dual_value():12.9}  {bound:12}  {cons.name()}')
