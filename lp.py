@@ -1,3 +1,5 @@
+import math
+
 from ortools.linear_solver import pywraplp
 
 def analyze(f):
@@ -18,6 +20,11 @@ def analyze(f):
   for var in s.variables():
     print(f'{var.solution_value():12.6}  {var.reduced_cost():12.6}  {o.GetCoefficient(var):12.6}  {var}')
 
-  print(f'\n{"Value":12}  {"Shadow price":12}  {"Lower bound":12}  {"Upper bound":12}  Constraint name')
+  print(f'\n{"Value":12}  {"Shadow price":12}  {"Bound":12}  Constraint name')
   for cons, val in zip(s.constraints(), s.ComputeConstraintActivities()):
-    print(f'{val:12.6}  {cons.dual_value():12.6}  {cons.lb():12}  {cons.ub():12}  {cons.name()}')
+    if cons.lb() != -math.inf:
+      bound = cons.lb() if cons.ub() == math.inf else 'TWO BOUNDS'
+    else:
+      bound = cons.ub() if cons.ub() != math.inf else 'NO BOUNDS'
+
+    print(f'{val:12.6}  {cons.dual_value():12.6}  {bound:12}  {cons.name()}')
