@@ -16,7 +16,7 @@ def analyze(f):
   o = s.Objective()
   print(f'Objective value: {o.Value()}')
 
-  print(f'\n{"Value":12}  {"Reduced cost":12}  {"Obj coef":12}  Variable name')
+  print(f'\n{"Value":12}  {"Reduced cost":12}  {"Obj. coef.":12}  Variable name')
   for var in s.variables():
     print(f'{var.solution_value():12.8}  {var.reduced_cost():12.8}  {o.GetCoefficient(var):12.8}  {var}')
 
