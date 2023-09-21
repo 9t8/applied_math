@@ -14,7 +14,8 @@ def f(s):
 
   s.Minimize(sum(a*b for a, b in zip(ec, x)))
 
-  nutritional_data = (
+  # nutritional constraints
+  for coefs, bound, name in (
     ((.08120, .00805, .06760, .20100, .01960, .01500), 20, 'protein (g)'),
     ((.0612, .3640, .4290, .1000, .0507, 1.0500), 400, 'Ca (mg)'),
     ((.03450, .00156, .10000, .00556, .00350, .00800), 7, 'Fe (mg)'),
@@ -25,11 +26,10 @@ def f(s):
     ((.00201, .00036, .00571, .00063, .00021, .00070), 1.1, 'vitamin B2 (mg)'),
     ((.03630, .00377, .00781, .03900, .01390, .00500), 12.1, 'vitamin B3 (mg)'),
     ((.112, .338, 0, 0, 0, 2.230), 400, 'vitamin A (mcg)')
-  )
-
-  for coefs, bound, name in nutritional_data:
+  ):
     s.Add(sum(a*b for a, b in zip(coefs, x)) >= bound, name)
 
+  # Calorie constraints
   s.Add(1000 <= ec[0]*x[0], 'min maize flour (Cal)')
   s.Add(ec[0]*x[0] <= 1200, 'max maize flour (Cal)')
   s.Add(50 <= ec[1]*x[1], 'min tangerines (Cal)')
