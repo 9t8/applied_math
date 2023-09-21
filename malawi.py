@@ -27,8 +27,8 @@ def f(s):
     ((.112, .338, 0, 0, 0, 2.230), 400, 'vitamin A (mcg)')
   )
 
-  for coeffs, bound, name in nutritional_data:
-    s.Add(sum(a*b for a, b in zip(coeffs, x)) >= bound, name)
+  for coefs, bound, name in nutritional_data:
+    s.Add(sum(a*b for a, b in zip(coefs, x)) >= bound, name)
 
   s.Add(1000 <= ec[0]*x[0], 'min maize flour (Cal)')
   s.Add(ec[0]*x[0] <= 1200, 'max maize flour (Cal)')
