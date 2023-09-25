@@ -22,9 +22,10 @@ def analyze(f):
 
   print(f'\n{"Value":12}  {"Shadow price":12}  {"Bound":12}  Constraint name')
   for cons, val in zip(s.constraints(), s.ComputeConstraintActivities()):
-    if cons.lb() != -math.inf:
-      bound = cons.lb() if cons.ub() == math.inf else 'TWO BOUNDS'
+    finite = lambda x : -math.inf < x < math.inf
+    if finite(cons.lb()):
+      bound = 'TWO BOUNDS' if finite(cons.ub()) else cons.lb()
     else:
-      bound = cons.ub() if cons.ub() != math.inf else 'NO BOUNDS'
+      bound = cons.ub() if finite(cons.ub()) else 'NO BOUNDS'
 
     print(f'{val:12.6}  {cons.dual_value():12.6}  {bound:12}  {cons.name()}')
