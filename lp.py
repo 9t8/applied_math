@@ -1,5 +1,3 @@
-import math
-
 from ortools.linear_solver import pywraplp
 
 def analyze(f):
@@ -22,7 +20,7 @@ def analyze(f):
 
   print(f'\n{"Value":12}  {"Shadow price":12}  {"Bound":12}  Constraint name')
   for cons, val in zip(s.constraints(), s.ComputeConstraintActivities()):
-    finite = lambda x : -math.inf < x < math.inf
+    finite = lambda x : -pywraplp.Solver.infinity() < x < pywraplp.Solver.infinity()
     if finite(cons.lb()):
       bound = 'TWO BOUNDS' if finite(cons.ub()) else cons.lb()
     else:
