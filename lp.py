@@ -1,24 +1,29 @@
 from ortools.linear_solver import pywraplp
 
-def analyze(f):
-  s = pywraplp.Solver.CreateSolver('GLOP')
-  assert s
+def analyze(f, solver_id='GLOP'):
+  s = pywraplp.Solver.CreateSolver(solver_id)
+  if not s:
+    print(f'Solver {solver_id} creation failed')
+    return
 
   f(s)
 
   status = s.Solve()
 
   if status != s.OPTIMAL:
-    print('No optimal solution!')
+    print('No optimal solution')
+    return
 
   o = s.Objective()
   print(f'Objective value: {o.Value()}')
 
-  print(f'\n{"Value":>12} {"Reduced cost":>12} {"Coefficient":>12} Variable name')
+  print('Variables')
+  print(f'{"Value":>12} {"Reduced cost":>12} {"Coefficient":>12} Name')
   for var in s.variables():
     print(f'{var.solution_value():12.6} {var.reduced_cost():12.6} {o.GetCoefficient(var):12.6} {var}')
 
-  print(f'\n{"Value":>12} {"Shadow price":>12} {"Bound":>12} Constraint name')
+  print('Constraints')
+  print(f'{"Value":>12} {"Shadow price":>12} {"Bound":>12} Name')
   for cons, val in zip(s.constraints(), s.ComputeConstraintActivities()):
     finite = lambda x : -pywraplp.Solver.infinity() < x < pywraplp.Solver.infinity()
     if finite(cons.lb()):
