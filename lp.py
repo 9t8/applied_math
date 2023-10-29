@@ -24,7 +24,7 @@ def analyze(f, solver_id='GLOP'):
 
   print('Constraints')
   print(f'{"Value":>12} {"Shadow price":>12} {"Bound":>12} Name')
-  for cons, val in zip(s.constraints(), s.ComputeConstraintActivities()):
+  for val, cons in zip(s.ComputeConstraintActivities(), s.constraints()):
     finite = lambda x : -pywraplp.Solver.infinity() < x < pywraplp.Solver.infinity()
     if finite(cons.lb()):
       bound = 'TWO BOUNDS' if finite(cons.ub()) else cons.lb()
