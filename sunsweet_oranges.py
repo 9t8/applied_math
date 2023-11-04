@@ -37,4 +37,4 @@ def f(s):
   s.Add(e + k + q >= 20, 'omaha demand')
   s.Add(f + l + r >= 30, 'okc demand')
 
-lp.analyze(f)
+lp.ortools_analyze(f)
