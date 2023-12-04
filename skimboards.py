@@ -40,4 +40,4 @@ def f(s):
   s.Add(a <= 100, 'resin (skimboards)')
   s.Add(2*b <= 400, 'sanding (hours)')
 
-lp.ortools_analyze(f)
+lp.analyze(f)

@@ -1,6 +1,6 @@
 from ortools.linear_solver import pywraplp
 
-def ortools_analyze(f, solver_id='GLOP'):
+def analyze(f, solver_id='GLOP'):
   s = pywraplp.Solver.CreateSolver(solver_id)
   if not s:
     print(f'Solver "{solver_id}" creation failed')

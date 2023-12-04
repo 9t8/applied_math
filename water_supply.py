@@ -22,4 +22,4 @@ def f(s):
   s.Add(c + g >= 2.4, 'standolf demand')
   s.Add(d + h >= 4.2, 'alamance demand')
 
-lp.ortools_analyze(f)
+lp.analyze(f)
