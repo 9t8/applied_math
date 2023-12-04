@@ -18,17 +18,11 @@ def analyze(f, solver_id='GLOP'):
   print(f'Objective = {o.Value()}')
 
   print('Variables')
-  print(f'{"Value":>12} {"Reduced cost":>12} {"Coefficient":>12} Name')
+  print(f'{"Name":16} {"Value":>12} {"Reduced cost":>12} {"Coefficient":>12}')
   for var in s.variables():
-    print(f'{var.solution_value():12.6} {var.reduced_cost():12.6} {o.GetCoefficient(var):12.6} {var}')
+    print(f'{var.name():16.16} {var.solution_value():12.6} {var.reduced_cost():12.6} {o.GetCoefficient(var):12.6}')
 
   print('Constraints')
-  print(f'{"Value":>12} {"Shadow price":>12} {"Bound":>12} Name')
+  print(f'{"Name":16} {"Value":>12} {"Shadow price":>12} {"Lower bound":>12} {"Upper bound":>12}')
   for cons, val in zip(s.constraints(), s.ComputeConstraintActivities()):
-    finite = lambda x : -pywraplp.Solver.infinity() < x < pywraplp.Solver.infinity()
-    if finite(cons.lb()):
-      bound = 'TWO BOUNDS' if finite(cons.ub()) else cons.lb()
-    else:
-      bound = cons.ub() if finite(cons.ub()) else 'NO BOUNDS'
-
-    print(f'{val:12.6} {cons.dual_value():12.6} {bound:>12} {cons.name()}')
+    print(f'{cons.name():16.16} {val:12.6} {cons.dual_value():12.6} {cons.lb():>12} {cons.ub():>12}')
