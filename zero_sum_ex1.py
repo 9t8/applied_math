@@ -8,7 +8,7 @@ def f(s):
   s.Maximize(e)
 
   s.Add(p1 + p2 == 1)
-  s.Add(5*p1 + 0*p2 >= e)
-  s.Add(4*p1 + 7*p2 >= e)
+  s.Add(6*p1 + 1*p2 >= e)
+  s.Add(5*p1 + 8*p2 >= e)
 
 lp.analyze(f)
