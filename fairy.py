@@ -1,8 +1,20 @@
+import lp
+
 import pandas as pd
 
-with open('fairy_chart.csv') as t:
-  d = pd.read_csv(t)
-  print(d[d['Attacking'] == 'Normal']['Steel'])
+import math
 
-types = *(t for t in d if t != 'Attacking'),
+with open('fairy_chart.csv') as t:
+  df = pd.read_csv(t)
+
+print(df.at[df['Attacking'] == 'Normal', 'Steel'])
+types = *(t for t in df if t != 'Attacking'),
 print(types)
+
+# coefs = {}
+# for att_type in types:
+#   coefs[att_type] = {
+#     def_type: math.log2((df[df['Attacking'] == att_type][def_type] + .2)
+#                         / (df[df['Attacking'] == def_type][att_type] + .2))
+#     for def_type in types
+#   }
