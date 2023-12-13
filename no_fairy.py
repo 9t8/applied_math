@@ -1,7 +1,7 @@
+import lp
+
 import json
 import math
-
-import lp
 
 def f(s):
   with open('no_fairy_chart.json') as f:
