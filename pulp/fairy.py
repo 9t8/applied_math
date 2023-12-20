@@ -23,6 +23,7 @@ e = pulp.LpVariable('E')
 x = {type: pulp.LpVariable(type, 0) for type in coefs}
 
 p = pulp.LpProblem('E', pulp.LpMaximize)
+
 p += e
 
 p += sum(x.values()) == 1, 'probabilities'
