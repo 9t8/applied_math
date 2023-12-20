@@ -28,6 +28,7 @@ p += e
 p += sum(x.values()) == 1, 'probabilities'
 
 for opp_type in coefs:
-  p += sum(coefs[my_type][opp_type] * x[my_type] for my_type in coefs) >= e, f'opponent {opp_type}'
+  p += sum(coefs[my_type][opp_type] * x[my_type] for my_type in coefs) >= e, \
+    f'opponent {opp_type}'
 
 analyze(p)
