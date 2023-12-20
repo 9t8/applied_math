@@ -21,7 +21,7 @@ for att_type in types:
 x = {type: pulp.LpVariable(type, 0) for type in coefs}
 e = pulp.LpVariable('E')
 
-p = pulp.LpProblem('HELP', pulp.LpMaximize)
+p = pulp.LpProblem('E', pulp.LpMaximize)
 p += e
 
 p += sum(x.values()) == 1, 'probabilities'
