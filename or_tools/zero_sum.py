@@ -1,4 +1,4 @@
-import lp
+from lp import analyze
 
 def f(s):
   p1 = s.NumVar(0, s.infinity(), 'P1')
@@ -11,4 +11,4 @@ def f(s):
   s.Add(6*p1 + 1*p2 >= e)
   s.Add(5*p1 + 8*p2 >= e)
 
-lp.analyze(f)
+analyze(f)

@@ -1,4 +1,4 @@
-import lp
+from lp import analyze
 
 import pandas as pd
 
@@ -31,4 +31,4 @@ def f(s):
       f'opponent {opp_type}'
     )
 
-lp.analyze(f)
+analyze(f)

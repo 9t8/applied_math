@@ -1,4 +1,4 @@
-import lp
+from lp import analyze
 
 def f(s):
   a = s.NumVar(0, s.infinity(), 'convenience')
@@ -11,4 +11,4 @@ def f(s):
   s.Add(4.125*a + 8.25*b + 12.375*c <= 82.5, 'capital (million $)')
   s.Add(30*a + 15*b + 45*c <= 300, 'employees')
 
-lp.analyze(f)
+analyze(f)

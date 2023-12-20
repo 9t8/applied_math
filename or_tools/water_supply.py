@@ -1,4 +1,4 @@
-import lp
+from lp import analyze
 
 def f(s):
   a = s.NumVar(0, s.infinity(), 'haw to rockingham')
@@ -22,4 +22,4 @@ def f(s):
   s.Add(c + g >= 2.4, 'standolf demand')
   s.Add(d + h >= 4.2, 'alamance demand')
 
-lp.analyze(f)
+analyze(f)

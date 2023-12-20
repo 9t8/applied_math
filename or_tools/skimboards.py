@@ -1,4 +1,4 @@
-import lp
+from lp import analyze
 
 def f(s):
   a = s.NumVar(0, s.infinity(), 'skimboards')
@@ -11,4 +11,4 @@ def f(s):
   s.Add(a <= 100, 'resin (skimboards)')
   s.Add(2*b <= 400, 'sanding (hours)')
 
-lp.analyze(f)
+analyze(f)

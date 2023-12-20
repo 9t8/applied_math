@@ -1,4 +1,4 @@
-import lp
+from lp import analyze
 
 def f(s):
   x = (
@@ -43,4 +43,4 @@ def f(s):
   s.Add(15 <= c[5]*x[5], 'min Chinese cabbage (Cal)')
   s.Add(c[5]*x[5] <= 30, 'max Chinese cabbage (Cal)')
 
-lp.analyze(f)
+analyze(f)
