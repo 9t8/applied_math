@@ -4,7 +4,7 @@ import pandas as pd
 
 import math
 
-with open('fairy_chart.csv') as file:
+with open('data/fairy.csv') as file:
   df = pd.read_csv(file)
 
 types = *(t for t in df if t != 'Attacking'),

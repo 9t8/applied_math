@@ -3,7 +3,7 @@ import lp
 import json
 import math
 
-with open('no_fairy_chart.json') as file:
+with open('data/no_fairy.json') as file:
   multipliers = json.load(file)
 
 coefs = {}
