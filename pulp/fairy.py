@@ -13,9 +13,10 @@ types = *(t for t in df if t != 'Attacking'),
 coefs = {}
 for att_type in types:
   coefs[att_type] = {
-    def_type: math.log2((df[df['Attacking'] == att_type][def_type].iat[0] + .2)
-                        / (df[df['Attacking'] == def_type][att_type].iat[0] + .2))
-    for def_type in types
+    def_type: math.log2(
+      (df[df['Attacking'] == att_type][def_type].iat[0] + .2)
+      / (df[df['Attacking'] == def_type][att_type].iat[0] + .2)
+    ) for def_type in types
   }
 
 e = pulp.LpVariable('E')
