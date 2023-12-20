@@ -1,4 +1,4 @@
-from lp import analyze
+from analyze import analyze
 
 def f(s):
   a = s.NumVar(0, s.infinity(), 'convenience')

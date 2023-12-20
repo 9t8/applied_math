@@ -1,4 +1,4 @@
-from lp import analyze
+from analyze import analyze
 
 def f(s):
   p1 = s.NumVar(0, s.infinity(), 'P1')
