@@ -1,9 +1,9 @@
 from analyze import analyze
 
 def f(s):
+  e = s.NumVar(0, s.infinity(), 'E')
   p1 = s.NumVar(0, s.infinity(), 'P1')
   p2 = s.NumVar(0, s.infinity(), 'P2')
-  e = s.NumVar(0, s.infinity(), 'E')
 
   s.Maximize(e)
 

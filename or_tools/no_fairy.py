@@ -15,8 +15,8 @@ for att_type in multipliers:
   }
 
 def f(s):
-  x = {type: s.NumVar(0, s.infinity(), type) for type in coefs}
   e = s.NumVar(-s.infinity(), s.infinity(), 'E')
+  x = {type: s.NumVar(0, s.infinity(), type) for type in coefs}
 
   s.Maximize(e)
 

@@ -18,8 +18,8 @@ for att_type in types:
     for def_type in types
   }
 
-x = {type: pulp.LpVariable(type, 0) for type in coefs}
 e = pulp.LpVariable('E')
+x = {type: pulp.LpVariable(type, 0) for type in coefs}
 
 p = pulp.LpProblem('E', pulp.LpMaximize)
 p += e
