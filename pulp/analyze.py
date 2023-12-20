@@ -3,7 +3,7 @@ import pulp
 def analyze(p):
   p.solve()
 
-  print(f'Status = {pulp.LpStatus[p.status]}')
+  print(f'Status: {pulp.LpStatus[p.status]}')
   print(f'{p.name} = {pulp.value(p.objective)}')
 
   print('Variables')
