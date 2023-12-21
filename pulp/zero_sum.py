@@ -10,11 +10,12 @@ p += sum(x.values())
 
 shift = 42
 
-p += (-41.5781+shift)*x[1] + (30.982+shift)*x[2] >= 1
-p += (7.942+shift)*x[1] + (-5.918+shift)*x[2] >= 1
+p += sum(a*b for a, b in zip((-41.5781+shift, 30.982+shift), x.values())) >= 1
+p += sum(a*b for a, b in zip((7.942+shift, -5.918+shift), x.values())) >= 1
+p += sum(a*b for a, b in zip((-5+shift, 5+shift), x.values())) >= 1
 
 analyze(p)
 
-print(1/pulp.value(p.objective) - shift)
+print(1/(pulp.value(p.objective) or 0) - shift)
 for e in x.values():
   print(pulp.value(e)/pulp.value(p.objective))
