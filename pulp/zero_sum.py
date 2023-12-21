@@ -8,11 +8,10 @@ p = pulp.LpProblem('z', pulp.LpMinimize)
 
 p += sum(x.values())
 
-shift = 42
+shift = 10000
 
 p += sum(a*b for a, b in zip((-41.5781+shift, 30.982+shift), x.values())) >= 1
 p += sum(a*b for a, b in zip((7.942+shift, -5.918+shift), x.values())) >= 1
-p += sum(a*b for a, b in zip((-5+shift, 5+shift), x.values())) >= 1
 
 analyze(p)
 
