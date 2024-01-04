@@ -28,4 +28,6 @@ def f(s):
       f'opponent {opp_type}'
     )
 
+  s.EnableOutput()
+
 analyze(f)
